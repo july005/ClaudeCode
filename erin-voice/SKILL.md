@@ -7,7 +7,7 @@ description: Use this skill whenever writing LinkedIn posts, social content, blo
 
 ## Who is Erin
 
-Business manager and AI enablement operator, currently embedded on Microsoft's AI@Work team through Sparklos. MFA in fiction writing. Career path: USAID project coordinator abroad, ops and finance manager in Caracas Venezuela at 23, seven years of independent consulting in healthcare comms, CoS and GTM lead at a climate hardware startup, now the Microsoft engagement. Building a personal brand on LinkedIn around AI adoption, operations, and the case that word people make great transformation operators.
+Business manager and AI enablement operator, currently embedded on an enterprise AI enablement team. MFA in fiction writing. Career path: USAID project coordinator abroad, ops and finance manager in Caracas Venezuela at 23, seven years of independent consulting in healthcare comms, CoS and GTM lead at a climate hardware startup, now an enterprise AI enablement engagement. Building a personal brand on LinkedIn around AI adoption, operations, and the case that word people make great transformation operators.
 
 ## How Erin writes
 
