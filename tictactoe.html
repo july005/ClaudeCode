@@ -1,0 +1,447 @@
+<title>Tic-Tac-Toe</title>
+<style>
+  :root {
+    --paper: #EAEBEF;
+    --panel: #F4F5F8;
+    --ink: #17191F;
+    --muted: #6B7080;
+    --line: #C9CCD6;
+    --x: #E8503A;
+    --o: #2E7D8A;
+    --x-soft: rgba(232, 80, 58, 0.12);
+    --o-soft: rgba(46, 125, 138, 0.12);
+    --shadow: rgba(23, 25, 31, 0.10);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --paper: #15171C;
+      --panel: #1D2027;
+      --ink: #ECEDF1;
+      --muted: #8B90A0;
+      --line: #333844;
+      --x: #FF6A54;
+      --o: #45AEBF;
+      --x-soft: rgba(255, 106, 84, 0.16);
+      --o-soft: rgba(69, 174, 191, 0.16);
+      --shadow: rgba(0, 0, 0, 0.45);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #15171C;
+    --panel: #1D2027;
+    --ink: #ECEDF1;
+    --muted: #8B90A0;
+    --line: #333844;
+    --x: #FF6A54;
+    --o: #45AEBF;
+    --x-soft: rgba(255, 106, 84, 0.16);
+    --o-soft: rgba(69, 174, 191, 0.16);
+    --shadow: rgba(0, 0, 0, 0.45);
+  }
+  :root[data-theme="light"] {
+    --paper: #EAEBEF;
+    --panel: #F4F5F8;
+    --ink: #17191F;
+    --muted: #6B7080;
+    --line: #C9CCD6;
+    --x: #E8503A;
+    --o: #2E7D8A;
+    --x-soft: rgba(232, 80, 58, 0.12);
+    --o-soft: rgba(46, 125, 138, 0.12);
+    --shadow: rgba(23, 25, 31, 0.10);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .stage {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+
+  header { text-align: center; }
+  .wordmark {
+    margin: 0;
+    font-weight: 800;
+    font-size: clamp(2.1rem, 9vw, 2.9rem);
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    text-wrap: balance;
+  }
+  .wordmark .x { color: var(--x); }
+  .wordmark .o { color: var(--o); }
+  .tagline {
+    margin: 8px 0 0;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+    color: var(--muted);
+  }
+
+  /* Mode toggle */
+  .modes {
+    display: flex;
+    gap: 4px;
+    padding: 4px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+  }
+  .modes button {
+    flex: 1;
+    appearance: none;
+    border: none;
+    background: transparent;
+    color: var(--muted);
+    font: inherit;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 9px 8px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: background 0.18s, color 0.18s;
+  }
+  .modes button:hover { color: var(--ink); }
+  .modes button[aria-pressed="true"] {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .modes button:focus-visible { outline: 2px solid var(--o); outline-offset: 2px; }
+
+  /* Scoreboard */
+  .scores {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+  }
+  .score {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 12px 8px;
+    text-align: center;
+  }
+  .score .label {
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .score .num {
+    font-size: 1.7rem;
+    font-weight: 800;
+    font-variant-numeric: tabular-nums;
+    margin-top: 2px;
+    line-height: 1;
+  }
+  .score.x .num { color: var(--x); }
+  .score.o .num { color: var(--o); }
+
+  /* Status line */
+  .status {
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.95rem;
+    min-height: 1.3em;
+    letter-spacing: 0.01em;
+  }
+  .status .who-x { color: var(--x); }
+  .status .who-o { color: var(--o); }
+
+  /* Board */
+  .board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    aspect-ratio: 1;
+    background: var(--line);
+    padding: 10px;
+    border-radius: 18px;
+    box-shadow: 0 18px 40px -18px var(--shadow);
+  }
+  .cell {
+    appearance: none;
+    border: none;
+    background: var(--panel);
+    border-radius: 12px;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    padding: 0;
+    transition: background 0.15s, transform 0.08s;
+  }
+  .cell:hover:not(:disabled) { background: var(--paper); }
+  .cell:active:not(:disabled) { transform: scale(0.97); }
+  .cell:disabled { cursor: default; }
+  .cell:focus-visible { outline: 2px solid var(--o); outline-offset: -4px; }
+  .cell.win { background: var(--ink); }
+
+  .mark { width: 46%; height: 46%; display: block; }
+  .mark path, .mark line, .mark circle {
+    stroke-linecap: round;
+    fill: none;
+  }
+  .mark.x path { stroke: var(--x); }
+  .mark.o circle { stroke: var(--o); }
+  .cell.win .mark.x path { stroke: #fff; }
+  .cell.win .mark.o circle { stroke: #fff; }
+
+  /* stroke draw-in animation */
+  .mark .draw {
+    stroke-dasharray: var(--len);
+    stroke-dashoffset: var(--len);
+    animation: draw 0.32s ease forwards;
+  }
+  .mark .draw.d2 { animation-delay: 0.14s; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+
+  .actions { display: flex; justify-content: center; }
+  .reset {
+    appearance: none;
+    background: transparent;
+    border: 1px solid var(--line);
+    color: var(--muted);
+    font: inherit;
+    font-weight: 600;
+    font-size: 0.82rem;
+    padding: 10px 20px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: color 0.18s, border-color 0.18s;
+  }
+  .reset:hover { color: var(--ink); border-color: var(--muted); }
+  .reset:focus-visible { outline: 2px solid var(--o); outline-offset: 2px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mark .draw { animation: none; stroke-dashoffset: 0; }
+    .cell { transition: none; }
+  }
+</style>
+
+<main class="stage">
+  <header>
+    <h1 class="wordmark"><span class="x">Tic</span> Tac <span class="o">Toe</span></h1>
+    <p class="tagline">three in a row wins</p>
+  </header>
+
+  <div class="modes" role="group" aria-label="Game mode">
+    <button id="mode-cpu" aria-pressed="true">vs Computer</button>
+    <button id="mode-2p" aria-pressed="false">2 Players</button>
+  </div>
+
+  <div class="scores">
+    <div class="score x"><div class="label">X</div><div class="num" id="score-x">0</div></div>
+    <div class="score"><div class="label">Draws</div><div class="num" id="score-d">0</div></div>
+    <div class="score o"><div class="label">O</div><div class="num" id="score-o">0</div></div>
+  </div>
+
+  <p class="status" id="status" aria-live="polite"></p>
+
+  <div class="board" id="board" role="grid" aria-label="Tic-tac-toe board"></div>
+
+  <div class="actions">
+    <button class="reset" id="reset">New round</button>
+  </div>
+</main>
+
+<script>
+  const boardEl = document.getElementById('board');
+  const statusEl = document.getElementById('status');
+  const scoreXEl = document.getElementById('score-x');
+  const scoreOEl = document.getElementById('score-o');
+  const scoreDEl = document.getElementById('score-d');
+  const modeCpuBtn = document.getElementById('mode-cpu');
+  const mode2pBtn = document.getElementById('mode-2p');
+
+  const LINES = [
+    [0,1,2],[3,4,5],[6,7,8],
+    [0,3,6],[1,4,7],[2,5,8],
+    [0,4,8],[2,4,6]
+  ];
+
+  let board, current, over, vsCpu = true, busy = false;
+  const scores = { X: 0, O: 0, D: 0 };
+  const HUMAN = 'X', CPU = 'O';
+
+  const markSVG = (p) => p === 'X'
+    ? `<svg class="mark x" viewBox="0 0 100 100" aria-hidden="true">
+         <path class="draw" style="--len:113" d="M20 20 L80 80" stroke-width="12"/>
+         <path class="draw d2" style="--len:113" d="M80 20 L20 80" stroke-width="12"/>
+       </svg>`
+    : `<svg class="mark o" viewBox="0 0 100 100" aria-hidden="true">
+         <circle class="draw" style="--len:214" cx="50" cy="50" r="34" stroke-width="12"/>
+       </svg>`;
+
+  function build() {
+    boardEl.innerHTML = '';
+    for (let i = 0; i < 9; i++) {
+      const c = document.createElement('button');
+      c.className = 'cell';
+      c.setAttribute('role', 'gridcell');
+      c.dataset.i = i;
+      c.setAttribute('aria-label', `Cell ${i + 1}, empty`);
+      c.addEventListener('click', () => play(i));
+      boardEl.appendChild(c);
+    }
+  }
+
+  function newRound() {
+    board = Array(9).fill(null);
+    current = 'X';
+    over = false;
+    busy = false;
+    [...boardEl.children].forEach(c => {
+      c.innerHTML = '';
+      c.disabled = false;
+      c.classList.remove('win');
+      c.setAttribute('aria-label', `Cell ${+c.dataset.i + 1}, empty`);
+    });
+    render();
+  }
+
+  function render() {
+    if (over) return;
+    const you = vsCpu && current === CPU ? 'Computer' : current;
+    statusEl.innerHTML = vsCpu
+      ? (current === HUMAN
+          ? `Your move · <span class="who-x">X</span>`
+          : `Computer thinking · <span class="who-o">O</span>`)
+      : `<span class="who-${current.toLowerCase()}">${current}</span> to move`;
+  }
+
+  function place(i, player) {
+    board[i] = player;
+    const cell = boardEl.children[i];
+    cell.innerHTML = markSVG(player);
+    cell.disabled = true;
+    cell.setAttribute('aria-label', `Cell ${i + 1}, ${player}`);
+  }
+
+  function play(i) {
+    if (over || busy || board[i]) return;
+    if (vsCpu && current !== HUMAN) return;
+    place(i, current);
+    if (finish()) return;
+    current = current === 'X' ? 'O' : 'X';
+    render();
+    if (vsCpu && current === CPU) {
+      busy = true;
+      setTimeout(cpuMove, 340);
+    }
+  }
+
+  function cpuMove() {
+    const i = bestMove(board, CPU);
+    place(i, CPU);
+    busy = false;
+    if (finish()) return;
+    current = HUMAN;
+    render();
+  }
+
+  function finish() {
+    const w = winner(board);
+    if (w) {
+      over = true;
+      w.line.forEach(idx => boardEl.children[idx].classList.add('win'));
+      [...boardEl.children].forEach(c => c.disabled = true);
+      scores[w.player]++;
+      updateScores();
+      if (vsCpu) {
+        statusEl.innerHTML = w.player === HUMAN
+          ? `You win! 🎉`
+          : `Computer wins`;
+      } else {
+        statusEl.innerHTML = `<span class="who-${w.player.toLowerCase()}">${w.player}</span> wins!`;
+      }
+      return true;
+    }
+    if (board.every(Boolean)) {
+      over = true;
+      scores.D++;
+      updateScores();
+      statusEl.textContent = "It's a draw";
+      return true;
+    }
+    return false;
+  }
+
+  function winner(b) {
+    for (const line of LINES) {
+      const [a, c, d] = line;
+      if (b[a] && b[a] === b[c] && b[a] === b[d]) return { player: b[a], line };
+    }
+    return null;
+  }
+
+  function updateScores() {
+    scoreXEl.textContent = scores.X;
+    scoreOEl.textContent = scores.O;
+    scoreDEl.textContent = scores.D;
+  }
+
+  // Minimax — unbeatable CPU
+  function bestMove(b, player) {
+    let bestScore = -Infinity, move = null;
+    for (let i = 0; i < 9; i++) {
+      if (!b[i]) {
+        b[i] = player;
+        const s = minimax(b, 0, false);
+        b[i] = null;
+        if (s > bestScore) { bestScore = s; move = i; }
+      }
+    }
+    return move;
+  }
+
+  function minimax(b, depth, maximizing) {
+    const w = winner(b);
+    if (w) return w.player === CPU ? 10 - depth : depth - 10;
+    if (b.every(Boolean)) return 0;
+
+    if (maximizing) {
+      let best = -Infinity;
+      for (let i = 0; i < 9; i++) {
+        if (!b[i]) { b[i] = CPU; best = Math.max(best, minimax(b, depth + 1, false)); b[i] = null; }
+      }
+      return best;
+    } else {
+      let best = Infinity;
+      for (let i = 0; i < 9; i++) {
+        if (!b[i]) { b[i] = HUMAN; best = Math.min(best, minimax(b, depth + 1, true)); b[i] = null; }
+      }
+      return best;
+    }
+  }
+
+  function setMode(cpu) {
+    vsCpu = cpu;
+    modeCpuBtn.setAttribute('aria-pressed', String(cpu));
+    mode2pBtn.setAttribute('aria-pressed', String(!cpu));
+    scores.X = scores.O = scores.D = 0;
+    updateScores();
+    newRound();
+  }
+
+  modeCpuBtn.addEventListener('click', () => setMode(true));
+  mode2pBtn.addEventListener('click', () => setMode(false));
+  document.getElementById('reset').addEventListener('click', newRound);
+
+  build();
+  newRound();
+</script>
