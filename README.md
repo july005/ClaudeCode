@@ -1,8 +1,8 @@
 # ClaudeCode
 
-A working repo. Things I've built in Claude Code, kept public on purpose.
+A working repo of things I've built in Claude Code.
 
-This is a mixed bag by design. Some of it is throwaway (a tic-tac-toe game I made while learning the tooling). Some of it is real craft (the voice skill below). I'm not curating this into a portfolio. It's a record of the actual work, which is the point.
+This is a mixed bag. Some of it is throwaway (a tic-tac-toe game I made while learning the tooling). Some of it is craft (the voice skill below). I'm not curating this into a portfolio. It's a record of my work.
 
 ## What's here
 
