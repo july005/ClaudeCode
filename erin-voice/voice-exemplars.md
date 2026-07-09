@@ -1,6 +1,6 @@
 # Voice Exemplars
 
-Source material for the erin-voice skill. All excerpts are from "Chica Extranjera," a blog I wrote in 2008 while running finance and ops for a federal contractor in Caracas at 23. This is the purest record of the voice. The skill rules are downstream of these. When a draft feels off, come back here.
+Source material for the erin-voice skill. All excerpts are from a blog I wrote in 2008 while running finance and ops for a federal contractor in Caracas at 23. This is the purest record of the voice. The skill rules are downstream of these. When a draft feels off, come back here.
 
 Each excerpt is tagged with the single technique it demonstrates. The annotation says why it works so the pattern is reusable, not just imitable.
 
