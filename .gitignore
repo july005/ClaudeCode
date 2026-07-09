@@ -1,0 +1,6 @@
+# Chief of Staff skill lives in its own PRIVATE repo (july005/cos).
+# Never publish it here — this repo is public.
+cos_claudecode/
+
+# OS
+.DS_Store
