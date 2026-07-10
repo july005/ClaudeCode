@@ -1,21 +1,50 @@
-# ClaudeCode
+# A working operating system for an independent AI enablement practice
 
-A working repo of things I've built in Claude Code.
+This repo runs a consulting practice. It is not a portfolio of finished work and it is not a set of demos. It is the actual infrastructure: the skills that do the work, the frameworks that decide what work is worth doing, and the governance that keeps the whole thing from drifting.
 
-This is a mixed bag. Some of it is throwaway (a tic-tac-toe game I made while learning the tooling). Some of it is craft (the voice skill below). I'm not curating this into a portfolio. It's a record of my work.
+The organizing idea is simple to state and hard to do. Every skill here earned its place by passing a diagnostic. Nothing is here because it was possible to build. Things are here because a specific workflow got examined and judged worth rebuilding. The restraint is the design.
 
-## What's here
+## Why so few skills, on purpose
 
-→ **tictactoe.html** — the first thing I shipped through Claude Code. Kept as a marker of where this started.
+The scarce skill in this work is not production. Models collapsed production. The scarce skill is naming the right problem in a room full of people circling it, and knowing which workflows are worth touching before anyone builds anything.
 
-→ **erin-voice/** — a skill that encodes my writing voice from a set of exemplars, with version control and a supporting exemplars file. Built entirely from my own material. This is the one worth reading if you want to see how I think about skill authoring: what's load-bearing, what gets cut, how you make a model sound like a specific person instead of a generic one.
+So this system was built the way I would build one for a client. I ran the diagnostic on my own workflows first.
 
-## What's not here
+The fork: is this an ops problem or an AI problem. Does a process exist, is it followed, and if not, why not. Four failure modes decide it: no owner, wrong incentives, tools that do not match the workflow, people who do not know the thing exists. An AI skill stacked on a broken process fails the same way, faster. Only after the process holds does the AI question open, and it splits again. Acceleration is the same work faster, and it has a ceiling. Rebuild is when the work itself changes. I built skills for the rebuilds.
 
-The production skills live behind my client's NDA. Design systems, brand assets, internal research, customer work. None of that belongs in a public repo, so it isn't in one.
+That is the whole logic. A skill in this repo means a workflow passed that test.
 
-That line is deliberate. The job I do is the human layer of AI governance, and a public repo with a client's confidential material sitting in it is the exact failure that role exists to prevent. What you can see here is built on material I own outright. What you can't see is the reason it isn't here.
+## What runs the practice
 
-## How to read the history
+A few principles govern everything here.
 
-The commits matter more than any single file. This is real iteration over time, not a staged demo. Clone it, read the log, look at how the skills got built and revised.
+Adoption is the keystone metric. A skill nobody uses returns nothing, so every skill is built to make the sanctioned path cheaper than the workaround.
+
+Enablement is the human layer of governance. The job is not a technical perimeter. The job is making the approved path so easy that shadow tooling dies on its own.
+
+Possession comes from infrastructure, not from claim. You own a capability because you built and versioned it, not because you said you had it. This repo is that principle applied to my own practice.
+
+## How it is structured
+
+Three layers, like an operating system.
+
+→ Kernel. CLAUDE.md and this README. The logic that makes the rest a system instead of a folder. Live.
+
+→ Applications. The skills, grouped by function under skills/.
+- Content. The erin-voice skill and its exemplars. Live.
+- Diagnostics. Two runnable skills: one that forks a workflow into ops versus AI and augment versus rebuild, and one that scores a backlog on impact, frequency, effort, and human-touch, then sequences it with adoption as the deciding factor. Frameworks you run, not frameworks that sit on a slide. Live.
+- Operations. Client intake, proposal drafting, and clean-room research briefs I own outright. Roadmap.
+
+The folders group these for a human reading the repo. Which skill fires is decided by each skill's own description, not its folder, so the same skills flatten cleanly when they deploy to a live environment.
+
+→ Shell. Slash commands so the skills are one keystroke, a .gitignore so nothing leaks, and a review discipline where changes move through inspected diffs. Partially live.
+
+## What is not here
+
+Anything built during a prior engagement stays out. Design systems, brand assets, internal research, client work. That material belongs to the engagement that paid for it, and leaving does not change that. What you see here is built on material I own outright. What you do not see is the reason it is not here.
+
+That boundary is not a limitation of the repo. It is the same judgment the work itself requires. The job is knowing where the line sits, and a public repo that respects it is the proof.
+
+## How to read it
+
+The commits matter more than any single file. This is real iteration over time. Clone it, read the log, watch the skills get built and revised, and read CLAUDE.md to see the rules any agent follows when it works in here. The system is the artifact. The individual files are just where it lives.
