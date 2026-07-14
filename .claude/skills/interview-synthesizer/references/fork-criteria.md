@@ -48,6 +48,8 @@ The recurring shape: an AI problem is work that no human needed to own. It requi
 
 **A step the person is proud of.** Slow down. Pride is often a marker of a load-bearing step. Go back to the load-bearing filter.
 
+**An ops problem with no owner.** The startup default. The verdict is orphaned, not ops problem, because an ops problem implies someone can fix it. Do not let the absence of an owner convert the step into your step. The finding is the absence. Escalate it as one.
+
 ## What to write
 
 For each step, one line of verdict and one line of reason. The reason must reference something the person actually said. If you cannot cite the transcript, you are inferring, and inference is what puts the wrong verdict on the wrong step.
