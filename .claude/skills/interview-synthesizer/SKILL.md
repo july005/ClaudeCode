@@ -17,14 +17,18 @@ If the input is a job description, a process document, or an org chart rather th
 
 ## Process
 
-### 0. Check what the process is attached to
+### 0. Establish the outcome
 
-Before mapping, ask what this process exists to serve.
+Before mapping anything, ask what this workflow is supposed to produce and how anyone would know it worked. Record the answer as the stated outcome.
 
-→ Attached to something structural (a contract, a regulatory requirement, the core revenue motion): the current form will change, the process will not. Full depth.
-→ Attached to a workaround, a single customer, or one person's preference: it may not survive the quarter. Sequence and seams only.
+Then treat that answer as a hypothesis, not a fact. The person inside a workflow optimizes their local pain, which is the correct thing for them to do and the wrong thing to design from. The actual outcome lives with whoever owns the money the workflow spends, or with the structural commitment it serves: a contract, a regulatory requirement, the revenue motion.
 
-Age is not the discriminator. New processes bolted to structural commitments outlive their current shape. Old processes bolted to nothing disappear the week the person who ran them leaves.
+→ What a workflow is attached to is what it is for. Trace it to the contract, the regulatory requirement, or the revenue motion it serves. If it is attached to nothing structural, ask whether it should exist at all.
+→ Ask who owns that. Ask when they last said what good looks like.
+→ If the stated outcome is about speed, effort, or the person's own frustration, it is almost certainly local. Name what it might be serving instead.
+→ If nobody can say who decided the outcome, that is the finding. Report it before you report anything else.
+
+Do not stop the diagnostic when the outcome is unclear. Map the workflow anyway. An unclear outcome is a result, not a blocker.
 
 ### 1. Extract the sequence
 
@@ -56,11 +60,13 @@ Load-bearing steps are the ones people most want to automate and the ones most l
 
 Read `references/fork-criteria.md`.
 
+Every step gets tested against the outcome before it gets forked. If a step does not serve the outcome, the verdict is delete, regardless of whether it looks like a clean AI candidate. A step can be perfectly automatable and still be in service of nothing.
+
 Every step that is not load-bearing gets one of five verdicts:
 
 → **Ops problem.** The step exists because a process is broken. Automating it makes the broken process faster and harder to fix. Name what would have to change upstream.
 → **AI problem.** The step is work no human needed to own. Information is stuck, or the same judgment is being reapplied to inputs that do not vary. This is where AI absorbs the work.
-→ **Delete.** The step produces something nobody uses. Say who you would have to ask to confirm this.
+→ **Delete.** The step does not serve the outcome. It may produce nothing anybody uses, or it may produce something several people consume that changes no decision anyone owns. Say who you would have to ask to confirm this.
 → **Leave it.** It works. Not everything is a problem.
 → **Orphaned.** The step is an ops problem and nobody owns the process it belongs to. Do not automate it and do not absorb it. The deliverable is the escalation: name the missing owner and who decides that.
 
@@ -75,6 +81,12 @@ Report the top three and say what you would do first. Say what you would not do,
 ```
 WORKFLOW: [name]
 SOURCE: [who was interviewed, when]
+
+STATED OUTCOME
+[what the interviewee says the workflow is for]
+
+OUTCOME I WOULD CHECK
+[what it may actually be for, who would know, and what would change if the second is right]
 
 SEQUENCE
 1. [step] → [owner] → [output]

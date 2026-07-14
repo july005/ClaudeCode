@@ -1,6 +1,22 @@
 # Fork criteria: ops problem or AI problem
 
-Every step that survives the load-bearing filter gets forked. The fork is the whole point of the diagnostic. Getting it wrong is the most expensive mistake in AI enablement, because an AI intervention on an ops problem produces a faster broken process and a constituency invested in keeping it.
+Every step that survives the load-bearing filter gets tested against the outcome, and only then forked. The fork is the whole point of the diagnostic. Getting it wrong is the most expensive mistake in AI enablement, because an AI intervention on an ops problem produces a faster broken process and a constituency invested in keeping it.
+
+## Before the test: does the step serve the outcome
+
+Run this first. It overrides the fork.
+
+A step that does not serve the outcome is a delete, even when it has every marker of a clean AI problem. Automating it produces a faster route to something nobody wanted.
+
+The failure is easy to miss because the local logic holds. Each step is a reasonable response to the step before it. The sequence is internally coherent and pointed at the wrong thing.
+
+Signals that a step serves a local outcome rather than the real one:
+→ The step reduces the interviewee's effort and changes nothing downstream
+→ Removing the step would embarrass someone but cost nothing
+→ The step exists to make a decision faster, and the decision is one that should be made less often rather than faster
+→ The person describes the benefit in terms of their own time
+
+That last one is the most common and the most expensive. Faster is not an outcome. It is a property of an outcome, and it is worth nothing when it is attached to the wrong one.
 
 ## The test
 
