@@ -17,6 +17,15 @@ If the input is a job description, a process document, or an org chart rather th
 
 ## Process
 
+### 0. Check what the process is attached to
+
+Before mapping, ask what this process exists to serve.
+
+→ Attached to something structural (a contract, a regulatory requirement, the core revenue motion): the current form will change, the process will not. Full depth.
+→ Attached to a workaround, a single customer, or one person's preference: it may not survive the quarter. Sequence and seams only.
+
+Age is not the discriminator. New processes bolted to structural commitments outlive their current shape. Old processes bolted to nothing disappear the week the person who ran them leaves.
+
 ### 1. Extract the sequence
 
 List every step the person describes, in order, as they described it. Do not clean it up. Do not merge steps. Do not infer steps they did not mention.
