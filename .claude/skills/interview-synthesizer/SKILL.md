@@ -47,12 +47,13 @@ Load-bearing steps are the ones people most want to automate and the ones most l
 
 Read `references/fork-criteria.md`.
 
-Every step that is not load-bearing gets one of four verdicts:
+Every step that is not load-bearing gets one of five verdicts:
 
 → **Ops problem.** The step exists because a process is broken. Automating it makes the broken process faster and harder to fix. Name what would have to change upstream.
 → **AI problem.** The step is work no human needed to own. Information is stuck, or the same judgment is being reapplied to inputs that do not vary. This is where AI absorbs the work.
 → **Delete.** The step produces something nobody uses. Say who you would have to ask to confirm this.
 → **Leave it.** It works. Not everything is a problem.
+→ **Orphaned.** The step is an ops problem and nobody owns the process it belongs to. Do not automate it and do not absorb it. The deliverable is the escalation: name the missing owner and who decides that.
 
 ### 5. Sequence
 
@@ -100,3 +101,5 @@ Do not recommend an AI intervention for a step where the person described frustr
 Do not produce more than three recommendations. A list of twelve is a way of avoiding the decision.
 
 If the whole workflow is an ops problem, say that. The correct output is sometimes that there is nothing here to build.
+
+If the fork says ops problem and there is no ops function, the fix is capped at minimum viable: standardize the input, write the one-page SOP, name an owner out loud. Then leave. Clearing the runway is in scope. Paving it is not.
