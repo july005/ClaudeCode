@@ -21,6 +21,7 @@ If the answer is "nothing, it would just take longer," the step is not load-bear
 → **The output is thrown away but the process of making it changed a decision.** The deck nobody read, made by someone who understood the problem while building it.
 → **The step is the only place two functions talk to each other.** Automate it and the two functions stop talking.
 → **Removing it would require someone to be accountable who currently is not.** The step is absorbing accountability nobody has claimed.
+→ **The person was there first.** At a startup, load-bearing steps concentrate in whoever arrived earliest. Tenure does not exempt a step from the test. It raises the bar for clearing it. Ask the week-five question and require a specific answer, not a shrug.
 
 ## What to do with them
 
