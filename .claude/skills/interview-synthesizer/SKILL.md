@@ -40,6 +40,14 @@ For each step capture:
 → What it produces
 → Where the output goes next
 
+Name the supplier. For each step, ask where the input comes from and who controls its quality. The supplier is often outside the workflow and outside the org, and the interviewee usually cannot change it, which is why they have stopped mentioning it.
+
+→ If a step exists to compensate for poor input quality, the step is not the problem. Say so, and name the supplier.
+→ If the interviewee chose the supplier, ask why, and listen for a defense. A defended supplier is a decision nobody has revisited.
+→ Bad input manifests downstream as steps that look automatable. They are compensating, and automating them makes the bad input permanent.
+
+Record supplier quality as a finding, not a step verdict. A supplier is not something you fork.
+
 ### 2. Mark the seams
 
 A seam is any point where work changes hands, changes systems, or waits.
@@ -97,6 +105,10 @@ SEQUENCE
 
 SEAMS
 → [step N to step N+1]: [what is lost]
+...
+
+SUPPLIERS
+→ [input]: [who controls its quality] [what it costs downstream when poor] [whether the interviewee chose them and how they defend it]
 ...
 
 LOAD-BEARING
