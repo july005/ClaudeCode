@@ -62,13 +62,15 @@ Read `references/fork-criteria.md`.
 
 Every step gets tested against the outcome before it gets forked. If a step does not serve the outcome, the verdict is delete, regardless of whether it looks like a clean AI candidate. A step can be perfectly automatable and still be in service of nothing.
 
+Every workflow failure is one of three things: a broken process, a task the tech should absorb, or a missing alignment. Name which before you fork.
+
 Every step that is not load-bearing gets one of six verdicts:
 
 → **Ops problem.** The step exists because a process is broken. Automating it makes the broken process faster and harder to fix. Name what would have to change upstream.
 → **AI problem.** The step is work no human needed to own. Information is stuck, or the same judgment is being reapplied to inputs that do not vary. This is where AI absorbs the work.
 → **Delete.** The step does not serve the outcome. It may produce nothing anybody uses, or it may produce something several people consume that changes no decision anyone owns. Say who you would have to ask to confirm this.
 → **Leave it.** It works. Not everything is a problem.
-→ **Orphaned.** The step is an ops problem and nobody owns the process it belongs to. Do not automate it and do not absorb it. The deliverable is the escalation: name the missing owner and who decides that.
+→ **Alignment problem (orphaned).** The process works and the tech is not the issue. What is missing is a person or an agreement: nobody owns the decision, or the people who share it have never aligned on it. Do not automate it and do not absorb it. The deliverable is the escalation: name who must own it and who decides that. Automating around an alignment gap hard-codes the disagreement.
 → **Ops first, then AI.** The step contains a real AI slice that only becomes available once an upstream ops fix lands. Name the ops fix, name what the AI absorbs afterward, and say plainly that building the second before the first produces a tool that depends on the broken thing. Do not sequence the AI work until the ops fix is owned.
 
 ### 5. Sequence
